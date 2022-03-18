@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html manifest="oispaeliitti.appcache">
+<html>
+
+<head>
+  <script>
+    var ilmolvl = 2;
+    if (window.location.hostname === "beta.oispaeliitti.fi")
+      alert("Mene pelaamaan osoitteessa oispaeliitti.fi, ja liitä tämä koodi Ilmoitukset-ikkunassa: \n\n"
+      + btoa(JSON.stringify(localStorage)));
+
+    function pastehere() {
+      let str = prompt("Liitä koodi (esim. aGVsbG8gd29ybGQ...");
+      try {
+        let obj = JSON.parse(atob(str));
+        for (let prop in obj) {
+          localStorage.setItem(prop, obj[prop]);
+        }
+        alert("Tietojen siirto onnistui");
+        location.reload();
+      } catch (e) {
+        throw e;
+        alert("Tietojen siirtämisessä oli virhe, lähetä palautetta ja kirjoita sinne myös koodi");
+      }
+    }
+  </script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Oispa eliitti!</title>
+  <link href="style/main.css?v=1.9" rel="stylesheet" type="text/css">
+  <link href="style/checkbox.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="favicon.png">
+  <!--<link rel="apple-touch-icon" href="meta/apple-touch-icon.png">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="title" content="Oispa eliitti!">
+  <meta name="description" content="Selvi&auml;tk&ouml; lakittamiseen asti?">
+  <meta name="keywords" content="Oispa eliitti, oispa, tsyk, lukio, turun suomalaisen yhteiskoulun lukio">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport"
+    content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta property="og:title" content="Oispa eliitti!" />
+  <meta property="og:url" content="https://www.oispaeliitein.fi" />
+  <meta property="og:description" content="Selvi&auml;tk&ouml; lakittamiseen asti?" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" />
+  <meta property="og:image:type" content="image/png" />
+</head>
+
+<body>
+  <div class="heading">
+    <h1 class="title strokeme" style="color:azure;">OISPA ELIITTI!</h1>
+    <div class="scores-container">
+      <div class="strokemewhite score-container"><span class="strokeme score-num">0</span></div>
+      <div class="strokemewhite kokonaismoti-container"><span class="strokeme kokonaismoti-num">0</span></div>
+      <div class="strokemewhite best-container"><span class="strokeme best-num">0</span></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="game-container">
+      <div class="doge-says">
+        <p></p>
+      </div>
+      <div class="katkoviesti">
+        <p></p>
+      </div>
+      <div class="info">
+        <!-- <div class="hide-info"><a>HIDE</a></div> -->
+        <br />
+        <p>Yhdistä samanlaiset kuvat käyttämällä nuolinäppäimiä tai pyyhkäisyä. Yritä selvitä lakittamiseen asti!
+          Jokaisen liikutuksen jälkeen satunnaiseen paikaan ilmestyy uusi kirja. Pahan paikan tullen voit mennä
+          koeviikolle, mutta vain jos motivaatiosi on riittävän korkea. Koeviikolla menetät motivaatiota, mutta pääset
+          eroon turhista kirjoista. <b>Auto-koeviikko (hetkellisesti pois käytöstä) pelastaa sinut kun häviät, mutta vie
+            samalla 300 pistettä. Alakulmasta voit varata käyttäjänimen, joka sijoittuu automaattisesti tulostaulukkoon.
+            Älä kirjaudu ulos kesken
+            pelin!<br><br></b><i>controls:</i><b>&nbspWASD&nbsp/&nbspHJKL&nbsp/&nbsp←↑↓→</b><br><i>reset:</i><b>&nbspR,
+          </b><i>koeviikko:</i><b>&nbsp-</b></p>
+        <p>Oispa Eliitti! by Miika T., Lennu. L & OPKH <br><br><a id="palaute" style="color:blue;">palaute</a><br><br>
+
+          <a href="https://blog.edu.turku.fi/tsyk/" target="_blank"><img src="img/tsyk.png" height="256px" /></a><br />
+          <small>Koodi <strike>kopioitu</strike> uusiokäytetty <a href="http://oispakaljaa.com/"
+              target="_blank"><b>Antti R:n Yhdet vielä! -pelistä</b> </a>.<br /></small><br />
+          <small>versio 4.2.0</small>
+        </p>
+      </div>
+      <div class="ilmo">
+        Uusi versio siirtyy osoitteeseen <a style="color:blue;" href="https://oispaeliitti.fi">oispaeliitti.fi</a>.
+        Jos sinulla on tunnuksia sivulla <a style="color:blue;"
+          href="https://beta.oispaeliitti.fi">beta.oispaeliitti.fi</a>,
+        kopioi ne sieltä (pitäisi näkyä heti), ja liitä <a style="color:blue;" onclick="pastehere()"><b>tähän</b></a>.
+        Vanhaa versiota voi pelata sivulla <a style="color:blue;"
+          href="https://classic.oispaeliitti.fi">classic.oispaeliitti.fi</a>.
+        <hr>
+        Tervetuloa Oispa eliitti -pelin uuteen versioon. Tässä kaikki muutokset ilmoitustaulun lisäksi:
+        <ul>
+          <li>Koeviikon hinta nousee seuraavasti:<br>&nbsp(1000->1100->1300->1600->2000->3000->5000->8000...)</li>
+          <li>Uusi palikka (yhdistä kaksi lakkia)</li>
+          <li>Tulostaulukko (koeviikko ei laske pisteitä)</li>
+          <li>Info-valikosta voi lähettää palautetta <br>&nbsp(toivotut ominaisuudet, kritiikki jne.)</li>
+          <li>R aloitaa pelin uudestaan, - käyttää koeviikon</li>
+          <li>Musiikki abitista lisätty</li>
+          <li>Äänet voi laittaa päälle <img style="width:12px" src="sonidoBLACK.png">-napista</li>
+          <li>Lulu-moment -nappi vaihtaa logot keskenään</li>
+          <li>Auto-koeviikko on poissa käytöstä, sillä sen järkevyydestä ei ole vielä päätetty.
+            Tarkoituksena kuitenkin olisi, että häviäminen tapahtuu kun moti loppuu kesken,
+            eikä silloin kun unohtaa painaa <i>koeviikko</i>.</li>
+        </ul>
+        - yt. M.
+        <hr style="border-top: 4px solid; margin-bottom: 0px;">
+        <hr style="border-top: 4px solid; position: relative; top:-15px; margin-bottom: 0px;">
+      </div>
+      <div class="mz" style="background:rgba(250,250,250,1);">
+        <iframe scrolling="no" src="https://cheat.abitti.fi/build/index.html?fi&muzak#"
+          style="border: 0px none; height: 550px; margin-top: -135px; width: 480px;">
+        </iframe>
+      </div>
+      <div class="lb">
+        <!-- <div class="hide-info"><a>HIDE</a></div> -->
+        <table>
+          <thead>
+            <tr style="background:rgba(200,200,255,0.8);">
+              <th>#</th>
+              <th>Pisteet</th>
+              <th>Nimi</th>
+            </tr>
+          </thead>
+          <tbody id="lbtable">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+          <a class="keep-playing-button"><b>Jatka peliä</b></a>
+          <a class="retry-button"><b>Yritä uudestaan</b></a>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+      <div class="tile-container">
+
+      </div>
+    </div>
+
+    <div class="lower-container">
+      <div class="buttons-container">
+        <div class="katko-container katko-container-color">
+          <a style="color:azure" TITLE="Mene koeviikolle. Menetät motivaatiota mutta pääset eroon turhista kirjoista"
+            class="go-katko">Koeviikko (-1000)</a>
+        </div>
+        <div class="lb-container">
+          <a TITLE="Tulokset" class="show-lb">Tulokset</a>
+        </div>
+        <br>
+        <div class="info-container">
+          <a TITLE="Tietoja pelistä" class="show-info">Info</a>
+        </div>
+
+
+        <div class="mz-container">
+          <a TITLE="Musiikki" class="show-mz">Abittibiisit</a>
+        </div>
+        <div class="ilmo-container">
+          <a TITLE="Ilmoitukset" class="show-ilmo">Ilmoitukset</a>
+        </div>
+      </div>
+
+      <div style="background:rgba(0,0,0,0.5);width:450px;height:100px;margin:auto;border-radius:5px">
+        <p style="color:azure;font-size:20px;" class="game-explanation strokeme">
+          Yhdistä samanlaiset kuvat ja kerää motivaatiota!<br />
+          Selviätkö lakittamiseen asti?!</p>
+        <div class="strokeme" style="text-align: center;position: relative;top:-7px;height:24px"><span
+            style="position: relative;left:-3px"><b style="color:azure;">Sivun kävijämäärä:&nbsp</b></span>
+          <img style="position:relative;top:3px;left:-3px;margin:0;background-color: white;"
+            src="https://hitwebcounter.com/counter/counter.php?page=7963481&style=0006&nbdigits=4&type=ip&initCount=17"
+            class="site-visitors">
+        </div>
+      </div>
+
+      <div style="fill:rgba(0,0,0,0.9);border-radius:10px">
+        <br><br>
+      </div>
+
+      <div class="fnamelabel">
+        <label class="strokeme" for="fname">Tee nimi:</label><br>
+        <nobr>
+          <input type="text" id="fname" style="background:white" name="fname" placeholder="anonymous">
+          <input type="submit" id="loginbtn" style="min-width:50px" value="Käytä">
+        </nobr>
+        <p style="color:#FF0033;margin-bottom:-8px" id="loginoutput">Valitse nimi</p>
+      </div>
+
+      <div class="lb2">
+        <!-- <div class="hide-info"><a>HIDE</a></div> -->
+        <table>
+          <thead>
+            <tr style="background:rgba(200,200,255,0.8);">
+              <!--<th>UUID</th>-->
+              <th>Pisteet</th>
+              <th>Nimi</th>
+            </tr>
+          </thead>
+          <tbody id="lbtable2">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="togglemute">
+        <input type="checkbox" name="un-mute" id="un-mute">
+        <label for="un-mute" class="unmute">
+          <img style="width:50px" src="sonidoON.png" alt="Speaker_Icon.svg" title="Unmute/speaker icon">
+        </label>
+        <label for="un-mute" class="mute">
+          <img style="width:50px" src="sonidoOFF.png" alt="Mute_Icon.svg" title="Mute icon">
+        </label>
+      </div>
+
+      <div class="togglefailsafe">
+        <div class="control-group">
+          <label class="control control-checkbox">
+            <b>Auto-
+              <input type="checkbox" id="autokoeviikko" disabled />
+              <div class="control_indicator"></div>
+              koeviikko
+            </b>
+          </label>
+        </div>
+        <hr>
+        <div class="control-group">
+          <label class="control control-checkbox">
+            <b>Lulu-
+              <input type="checkbox" id="melumoment" />
+              <div class="control_indicator"></div>
+              moment
+            </b>
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <script src="js/animframe_polyfill.js"></script>
+    <script src="js/keyboard_input_manager.js?v=1.6"></script>
+    <script src="js/html_actuator.js?v=1.9"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/tile.js"></script>
+    <script src="js/local_data_manager.js"></script>
+    <script src="js/game_manager.js?v=1.3"></script>
+    <script src="js/accountmanager.js?v=1.0"></script>
+    <script src="js/application.js"></script>
+</body>
+
+</html>
